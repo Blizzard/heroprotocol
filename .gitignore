@@ -1,5 +1,22 @@
 *.DS_Store
-*.pyc
 
 *.SC2Replay
 *.StormReplay
+
+# Virtual Environments
+env/
+venv/
+
+
+# Python stuff
+build/
+dist/
+*.egg
+*.egg-info/
+*.pyc
+
+# Output file for testing
+output.txt
+
+# Pycharm
+.idea/
