@@ -48,6 +48,6 @@ Open sourced under the MIT license. See the included LICENSE file for more infor
 
 # Acknowledgements
 
-The standalone tool uses [mpyq](https://github.com/arkx/mpyq/) to read mopaq files.
+The standalone tool uses [mpyq](https://github.com/eagleflo/mpyq) to read mopaq files.
 
 Thanks to David Joerg and Graylin Kim of [GGTracker](http://www.ggtracker.com) for design feedback and beta-testing of the s2protocol library that heroprotocol is based upon.
