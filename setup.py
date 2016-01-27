@@ -11,8 +11,8 @@ setup(
     name='heroprotocol',
     version=__version__,
     author='Blizzard Entertainment',
-    author_email='???',  # 
-    packages=find_packages(exclude=['tests']),  # Maybe I am hopeful for seeting tests in the future
+    author_email='???',
+    packages=find_packages(exclude=['tests']),
     entry_points={
         'console_scripts': [
             'heroprotocol = heroprotocol.cmdline:main',
