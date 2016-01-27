@@ -36,37 +36,23 @@ py heroprotocol.py --details "Blackheart's Bay.StormReplay" > output.txt
 
 ## --<option> arguments
 
-`-h, --help`
+`-h, --help` Show the options that are available.
 
-Show the options that are available.
+`--gameevents` print all game events including coordinates
 
-`--gameevents`
+`--messageevents` print message events such as ping events
 
-print all game events including coordinates
+`--trackerevents` print tracker events such as units killed and partly old variables that are still from SC2
 
-`--messageevents`
-print message events such as ping events
+`--attributeevents` print attribute events, a table of attrid, namespace, and attribute values
 
-`--trackerevents`
-print tracker events such as units killed and partly old variables that are still from SC2
+`--header` print protocol header including HotS build and elapsedGameLoops
 
-`--attributeevents`
-print attribute events, a table of attrid, namespace, and attribute values
+`--details` print protocol details, e.g. teamId, player names and chosen heroes, player region, game result, observer status
 
-`--header`
-print protocol header including HotS build and elapsedGameLoops
+`--initdata` print protocol initdata, e.g. interface settings for every player
 
-`--details`
-
-print protocol details, e.g. teamId, player names and chosen heroes, player region, game result, observer status
-
-`--initdata`
-
-print protocol initdata, e.g. interface settings for every player
-
-`--stats`
-
-print game stats
+`--stats` print game stats
 
 
 # Tracker Events
