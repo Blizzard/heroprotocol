@@ -19,6 +19,68 @@ to be just the first tool in the chain for your data mining application.
 
 heroprotocol supports all Hereos of the Storm replay files that were written with retail versions of the game. The current plan is to support all future publicly released versions, including public betas.
 
+# How to Use
+
+A working installation of Python 2.x is required. From the folder where *heroprotocol* is located, type the following into the command line, assuming that the replay file was also copied into the same folder:
+```python
+py heroprotocol.py --<option> "<replayFileName>" > output.txt
+```
+
+If you want the output shown directly in the terminal, leave out the `> output.txt`.
+
+## Example Usage
+
+```python
+py heroprotocol.py --details "Blackheart's Bay.StormReplay" > output.txt
+```
+
+## --<option> arguments
+
+```python
+-h, --help
+```
+
+```python
+--gameevents
+```
+print all game events including coordinates
+
+```python
+--messageevents
+```
+print message events such as ping events
+
+```python
+--trackerevents
+```
+print tracker events such as units killed and partly old variables that are still from SC2
+
+```python
+--attributeevents
+```
+print attribute events, a table of attrid, namespace, and attribute values
+
+```python
+--header
+```
+print protocol header including HotS build and elapsedGameLoops
+
+```python
+--details
+```
+print protocol details, e.g. teamId, player names and chosen heroes, player region, game result, observer status
+
+```python
+--initdata
+```
+print protocol initdata, e.g. interface settings for every player
+
+```python
+--stats
+```
+print game stats
+
+
 # Tracker Events
 
 Some notes on tracker events:
