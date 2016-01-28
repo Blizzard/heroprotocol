@@ -163,7 +163,8 @@ if __name__ == '__main__':
         contentsDetails = archive.read_file('replay.details')
         details = {}
         details = protocol.decode_replay_details(contentsDetails)
-        del(details["m_cacheHandles"])
+        if "m_cacheHandles" in details:
+            del details["m_cacheHandles"]
 
         # Replay Game Events
         contentsGameEvents = archive.read_file('replay.game.events')
