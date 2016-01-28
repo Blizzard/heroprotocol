@@ -11,7 +11,7 @@ setup(
     name='heroprotocol',
     version=__version__,
     author='Blizzard Entertainment',
-    author_email='???',
+    author_email='cmstewart@blizzard.com',
     packages=find_packages(exclude=['tests']),
     entry_points={
         'console_scripts': [

@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+import os
 import sys
 import argparse
 import importlib
@@ -29,6 +30,12 @@ import json
 from mpyq import MPQArchive
 
 from heroprotocol.protocols import protocol29406
+
+gameEventsList = []
+trackerEventsList = []
+replayFile = ""
+composite = ""
+protocol = ""
 
 class EventLogger:
     
@@ -66,15 +73,51 @@ class EventLogger:
         if type == 'gameEvents':
             gameEventsList.append(event)
 
-    # dump as JSON
-    def logComposite(self, output, composite):
-        composite = json.dumps(composite)
-        print composite
+    def parseComposite(self, protocol, archive):
 
-def main():
+        # Replay Details
+        contentsDetails = archive.read_file('replay.details')
+        details = {}
+        details = protocol.decode_replay_details(contentsDetails)
+        if "m_cacheHandles" in details:
+            del details["m_cacheHandles"]
+
+        # Replay Game Events
+        contentsGameEvents = archive.read_file('replay.game.events')
+        for event in protocol.decode_replay_game_events(contentsGameEvents):
+            logger.createStats(sys.stdout, 'gameEvents', event)
+
+        # Replay Tracker Events
+        if hasattr(protocol, 'decode_replay_tracker_events'):
+            contentsTrackerEvents = archive.read_file('replay.tracker.events')
+            for event in protocol.decode_replay_tracker_events(contentsTrackerEvents):
+                logger.createStats(sys.stdout, 'trackerEvents', event)
+
+        # Build & print the composite object
+        compositeObject = {}
+        compositeObject["details"] = details
+        compositeObject["gameEvents"] = gameEventsList
+        compositeObject["trackerEvents"] = trackerEventsList
+
+        logger.dumpComposite(compositeObject)
+
+    # dump as JSON
+    def dumpComposite(self, compositeObject):
+        global composite 
+        
+        composite = json.dumps(compositeObject)
+
+        return composite
+
+    def logComposite(self, output, compositeObject):
+        print compositeObject
+
+logger = EventLogger()
+
+def main(replayFile=None, protocol=protocol):
     """Main entry point from the command line."""
     parser = argparse.ArgumentParser()
-    parser.add_argument('replay_file', help='.StormReplay file to load')
+    parser.add_argument('--replay_file', help='.StormReplay file to load')
     parser.add_argument("--gameevents", help="print game events",
                         action="store_true")
     parser.add_argument("--messageevents", help="print message events",
@@ -96,9 +139,10 @@ def main():
 
     args = parser.parse_args()
 
-    archive = MPQArchive(args.replay_file)
-    
-    logger = EventLogger()
+    if replayFile is None:
+        archive = MPQArchive(args.replay_file)
+    else:
+        archive = MPQArchive(replayFile)
 
     # Read the protocol header, this can be read with any protocol
     contents = archive.header['user_data_header']['content']
@@ -158,32 +202,15 @@ def main():
 
     # Build Composite Stats
     if args.composite:
+        logger.parseComposite(protocol, archive)
 
-        gameEventsList = []
-        trackerEventsList = []
+        logger.logComposite(sys.stdout, composite)
 
-        # Replay Details
-        contentsDetails = archive.read_file('replay.details')
-        details = {}
-        details = protocol.decode_replay_details(contentsDetails)
-        if "m_cacheHandles" in details:
-            del details["m_cacheHandles"]
+    else:
+        replayName = os.path.splitext(replayFile)[0]
+        outputFile = open(replayName + ".json", 'a')
 
-        # Replay Game Events
-        contentsGameEvents = archive.read_file('replay.game.events')
-        for event in protocol.decode_replay_game_events(contentsGameEvents):
-            logger.createStats(sys.stdout, 'gameEvents', event)
+        logger.parseComposite(protocol, archive)
 
-        # Replay Tracker Events
-        if hasattr(protocol, 'decode_replay_tracker_events'):
-            contentsTrackerEvents = archive.read_file('replay.tracker.events')
-            for event in protocol.decode_replay_tracker_events(contentsTrackerEvents):
-                logger.createStats(sys.stdout, 'trackerEvents', event)
-
-        # Build & print the composite object
-        compositeObject = {}
-        compositeObject["details"] = details
-        compositeObject["gameEvents"] = gameEventsList
-        compositeObject["trackerEvents"] = trackerEventsList
-
-        logger.logComposite(sys.stdout, compositeObject)
+        outputFile.write(composite)
+        outputFile.close()
