@@ -99,7 +99,7 @@ class EventLogger:
         compositeObject["gameEvents"] = gameEventsList
         compositeObject["trackerEvents"] = trackerEventsList
 
-        logger.dumpComposite(compositeObject)
+        self.dumpComposite(compositeObject)
 
     # dump as JSON
     def dumpComposite(self, compositeObject):
@@ -207,10 +207,5 @@ def main(replayFile=None, protocol=protocol):
         logger.logComposite(sys.stdout, composite)
 
     else:
-        replayName = os.path.splitext(replayFile)[0]
-        outputFile = open(replayName + ".json", 'a')
-
         logger.parseComposite(protocol, archive)
-
-        outputFile.write(composite)
-        outputFile.close()
+        return composite
