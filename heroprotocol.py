@@ -67,7 +67,7 @@ class EventLogger:
     # dump as JSON
     def logComposite(self, output, composite):
         composite = json.dumps(composite)
-        pprint.pprint(composite)
+        print composite
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -163,8 +163,7 @@ if __name__ == '__main__':
         contentsDetails = archive.read_file('replay.details')
         details = {}
         details = protocol.decode_replay_details(contentsDetails)
-        if "m_cacheHandles" in details:
-            del(details["m_cacheHandles"])
+        del(details["m_cacheHandles"])
 
         # Replay Game Events
         contentsGameEvents = archive.read_file('replay.game.events')
