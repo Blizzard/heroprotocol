@@ -27,25 +27,44 @@ import pprint
 from mpyq import mpyq
 import protocol29406
 
-
 class EventLogger:
+    
     def __init__(self):
         self._event_stats = {}
         
     def log(self, output, event):
-        # update stats
-        if '_event' in event and '_bits' in event:
-            stat = self._event_stats.get(event['_event'], [0, 0])
-            stat[0] += 1  # count of events
-            stat[1] += event['_bits']  # count of bits
-            self._event_stats[event['_event']] = stat
+
+        self.buildEventStats(output, event)
+        
         # write structure
         pprint.pprint(event, stream=output)
         
     def log_stats(self, output):
         for name, stat in sorted(self._event_stats.iteritems(), key=lambda x: x[1][1]):
             print >> output, '"%s", %d, %d,' % (name, stat[0], stat[1] / 8)
-    
+
+    def buildEventStats(self, output, event):
+
+        # update stats
+        if '_event' in event and '_bits' in event:
+            stat = self._event_stats.get(event['_event'], [0, 0])
+            stat[0] += 1  # count of events
+            stat[1] += event['_bits']  # count of bits
+            self._event_stats[event['_event']] = stat
+
+
+    def createStats(self, output, type, event):
+
+        self.buildEventStats(output, event)
+        
+        if type == 'trackerEvents':
+            trackerEventsList.append(event)
+
+        if type == 'gameEvents':
+            gameEventsList.append(event)
+
+    def logComposite(self, output, composite):
+        pprint.pprint(composite)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -66,6 +85,9 @@ if __name__ == '__main__':
                         action="store_true")
     parser.add_argument("--stats", help="print stats",
                         action="store_true")
+    parser.add_argument("--composite", help="build composite stats and print them as JSON", 
+                        action="store_true")
+
     args = parser.parse_args()
 
     archive = mpyq.MPQArchive(args.replay_file)
@@ -127,4 +149,34 @@ if __name__ == '__main__':
     # Print stats
     if args.stats:
         logger.log_stats(sys.stderr)
+
+    # Build Composite Stats
+    if args.composite:
+
+        gameEventsList = []
+        trackerEventsList = []
+
+        # Replay Details
+        contentsDetails = archive.read_file('replay.details')
+        details = {}
+        details = protocol.decode_replay_details(contentsDetails)
+
+        # Replay Game Events
+        contentsGameEvents = archive.read_file('replay.game.events')
+        for event in protocol.decode_replay_game_events(contentsGameEvents):
+            logger.createStats(sys.stdout, 'gameEvents', event)
+
+        # Replay Tracker Events
+        if hasattr(protocol, 'decode_replay_tracker_events'):
+            contentsTrackerEvents = archive.read_file('replay.tracker.events')
+            for event in protocol.decode_replay_tracker_events(contentsTrackerEvents):
+                logger.createStats(sys.stdout, 'trackerEvents', event)
+
+        # Build & print the composite object
+        compositeObject = {}
+        compositeObject["details"] = details
+        compositeObject["gameEvents"] = gameEventsList
+        compositeObject["trackerEvents"] = trackerEventsList
+
+        logger.logComposite(sys.stdout, compositeObject)
 
