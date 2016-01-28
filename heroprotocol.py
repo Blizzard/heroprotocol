@@ -23,6 +23,7 @@
 import sys
 import argparse
 import pprint
+import json
 
 from mpyq import mpyq
 import protocol29406
@@ -63,7 +64,9 @@ class EventLogger:
         if type == 'gameEvents':
             gameEventsList.append(event)
 
+    # dump as JSON
     def logComposite(self, output, composite):
+        composite = json.dumps(composite)
         pprint.pprint(composite)
 
 if __name__ == '__main__':
@@ -160,6 +163,8 @@ if __name__ == '__main__':
         contentsDetails = archive.read_file('replay.details')
         details = {}
         details = protocol.decode_replay_details(contentsDetails)
+        if "m_cacheHandles" in details:
+            del(details["m_cacheHandles"])
 
         # Replay Game Events
         contentsGameEvents = archive.read_file('replay.game.events')
@@ -179,4 +184,3 @@ if __name__ == '__main__':
         compositeObject["trackerEvents"] = trackerEventsList
 
         logger.logComposite(sys.stdout, compositeObject)
-
