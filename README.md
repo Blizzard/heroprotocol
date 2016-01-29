@@ -42,7 +42,7 @@ py heroprotocol.py --details "Blackheart's Bay.StormReplay" > output.txt
 
 `--messageevents` print message events such as ping events
 
-`--trackerevents` print tracker events such as units killed and partly old variables that are still from SC2
+`--trackerevents` print tracker events such as units killed, game stat events, score result event
 
 `--attributeevents` print attribute events, a table of attrid, namespace, and attribute values
 
@@ -87,3 +87,5 @@ Open sourced under the MIT license. See the included LICENSE file for more infor
 The standalone tool uses [mpyq](https://github.com/arkx/mpyq/) to read mopaq files.
 
 Thanks to David Joerg and Graylin Kim of [GGTracker](http://www.ggtracker.com) for design feedback and beta-testing of the s2protocol library that heroprotocol is based upon.
+
+Thanks to Ben Barrett of [HOTSLogs](http://www.hotslogs.com) for feedback on and beta-testing of the heroprotocol library.

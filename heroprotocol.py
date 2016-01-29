@@ -49,7 +49,7 @@ class EventLogger:
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('replay_file', help='HotS replay file to load')
+    parser.add_argument('replay_file', help='.StormReplay file to load')
     parser.add_argument("--gameevents", help="print game events",
                         action="store_true")
     parser.add_argument("--messageevents", help="print message events",
