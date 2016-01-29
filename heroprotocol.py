@@ -23,10 +23,10 @@
 import sys
 import argparse
 import pprint
+import json
 
 from mpyq import mpyq
 import protocol29406
-
 
 class EventLogger:
     def __init__(self):
@@ -40,7 +40,11 @@ class EventLogger:
             stat[1] += event['_bits']  # count of bits
             self._event_stats[event['_event']] = stat
         # write structure
-        pprint.pprint(event, stream=output)
+        if args.json:
+            s = json.dumps(event, encoding="ISO-8859-1");
+            print(s);
+        else:
+            pprint.pprint(event, stream=output)
 
     def log_stats(self, output):
         for name, stat in sorted(self._event_stats.iteritems(), key=lambda x: x[1][1]):
@@ -66,11 +70,14 @@ if __name__ == '__main__':
                         action="store_true")
     parser.add_argument("--stats", help="print stats",
                         action="store_true")
+    parser.add_argument("--json", help="protocol information is printed in json format.",
+                        action="store_true")
     args = parser.parse_args()
 
     archive = mpyq.MPQArchive(args.replay_file)
 
     logger = EventLogger()
+    logger.args = args;
 
     # Read the protocol header, this can be read with any protocol
     contents = archive.header['user_data_header']['content']
