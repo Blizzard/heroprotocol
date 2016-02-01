@@ -24,6 +24,7 @@ import sys
 import argparse
 import importlib
 import pprint
+import json
 
 from mpyq import MPQArchive
 
@@ -33,7 +34,7 @@ from heroprotocol.protocols import protocol29406
 class EventLogger:
     def __init__(self):
         self._event_stats = {}
-        
+
     def log(self, output, event):
         # update stats
         if '_event' in event and '_bits' in event:
@@ -42,12 +43,16 @@ class EventLogger:
             stat[1] += event['_bits']  # count of bits
             self._event_stats[event['_event']] = stat
         # write structure
-        pprint.pprint(event, stream=output)
-        
+        if args.json:
+            s = json.dumps(event, encoding="ISO-8859-1");
+            print(s);
+        else:
+            pprint.pprint(event, stream=output)
+
     def log_stats(self, output):
         for name, stat in sorted(self._event_stats.iteritems(), key=lambda x: x[1][1]):
             print >> output, '"%s", %d, %d,' % (name, stat[0], stat[1] / 8)
-    
+
 
 def main():
     """Main entry point from the command line."""
@@ -69,11 +74,14 @@ def main():
                         action="store_true")
     parser.add_argument("--stats", help="print stats",
                         action="store_true")
+    parser.add_argument("--json", help="protocol information is printed in json format.",
+                        action="store_true")
     args = parser.parse_args()
 
     archive = MPQArchive(args.replay_file)
-    
+
     logger = EventLogger()
+    logger.args = args;
 
     # Read the protocol header, this can be read with any protocol
     contents = archive.header['user_data_header']['content']
@@ -88,7 +96,7 @@ def main():
     except:
         print >> sys.stderr, 'Unsupported base build: %d' % baseBuild
         sys.exit(1)
-        
+
     # Print protocol details
     if args.details:
         contents = archive.read_file('replay.details')
@@ -126,7 +134,7 @@ def main():
         contents = archive.read_file('replay.attributes.events')
         attributes = protocol.decode_replay_attributes_events(contents)
         logger.log(sys.stdout, attributes)
-        
+
     # Print stats
     if args.stats:
         logger.log_stats(sys.stderr)
