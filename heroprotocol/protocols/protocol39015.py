@@ -18,7 +18,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-from decoders import *
+from heroprotocol.decoders import *
 
 
 # Decoding instructions for each protocol type.
@@ -106,25 +106,25 @@ typeinfos = [
     ('_struct',[[('x',79,-2),('y',79,-1)]]),  #80
     ('_struct',[[('m_which',12,-2),('m_target',80,-1)]]),  #81
     ('_struct',[[('m_fileName',30,-5),('m_automatic',13,-4),('m_overwrite',13,-3),('m_name',9,-2),('m_description',29,-1)]]),  #82
-    ('_int',[(1,32)]),  #83
-    ('_struct',[[('m_sequence',83,-1)]]),  #84
-    ('_null',[]),  #85
-    ('_int',[(0,20)]),  #86
-    ('_int',[(-2147483648,32)]),  #87
-    ('_struct',[[('x',86,-3),('y',86,-2),('z',87,-1)]]),  #88
-    ('_struct',[[('m_targetUnitFlags',79,-7),('m_timer',10,-6),('m_tag',6,-5),('m_snapshotUnitLink',79,-4),('m_snapshotControlPlayerId',59,-3),('m_snapshotUpkeepPlayerId',59,-2),('m_snapshotPoint',88,-1)]]),  #89
-    ('_choice',[(0,2),{0:('None',85),1:('TargetPoint',88),2:('TargetUnit',89)}]),  #90
-    ('_struct',[[('m_target',90,-4),('m_time',87,-3),('m_verb',29,-2),('m_arguments',29,-1)]]),  #91
-    ('_struct',[[('m_data',91,-1)]]),  #92
-    ('_int',[(0,25)]),  #93
-    ('_struct',[[('m_abilLink',79,-3),('m_abilCmdIndex',2,-2),('m_abilCmdData',25,-1)]]),  #94
-    ('_optional',[94]),  #95
-    ('_choice',[(0,2),{0:('None',85),1:('TargetPoint',88),2:('TargetUnit',89),3:('Data',6)}]),  #96
-    ('_struct',[[('m_cmdFlags',93,-6),('m_abil',95,-5),('m_data',96,-4),('m_sequence',83,-3),('m_otherUnit',43,-2),('m_unitGroup',43,-1)]]),  #97
+    ('_struct',[[('m_sequence',6,-1)]]),  #83
+    ('_null',[]),  #84
+    ('_int',[(0,20)]),  #85
+    ('_int',[(-2147483648,32)]),  #86
+    ('_struct',[[('x',85,-3),('y',85,-2),('z',86,-1)]]),  #87
+    ('_struct',[[('m_targetUnitFlags',79,-7),('m_timer',10,-6),('m_tag',6,-5),('m_snapshotUnitLink',79,-4),('m_snapshotControlPlayerId',59,-3),('m_snapshotUpkeepPlayerId',59,-2),('m_snapshotPoint',87,-1)]]),  #88
+    ('_choice',[(0,2),{0:('None',84),1:('TargetPoint',87),2:('TargetUnit',88)}]),  #89
+    ('_struct',[[('m_target',89,-4),('m_time',86,-3),('m_verb',29,-2),('m_arguments',29,-1)]]),  #90
+    ('_struct',[[('m_data',90,-1)]]),  #91
+    ('_int',[(0,25)]),  #92
+    ('_struct',[[('m_abilLink',79,-3),('m_abilCmdIndex',2,-2),('m_abilCmdData',25,-1)]]),  #93
+    ('_optional',[93]),  #94
+    ('_choice',[(0,2),{0:('None',84),1:('TargetPoint',87),2:('TargetUnit',88),3:('Data',6)}]),  #95
+    ('_int',[(1,32)]),  #96
+    ('_struct',[[('m_cmdFlags',92,-6),('m_abil',94,-5),('m_data',95,-4),('m_sequence',96,-3),('m_otherUnit',43,-2),('m_unitGroup',43,-1)]]),  #97
     ('_int',[(0,9)]),  #98
     ('_bitarray',[(0,9)]),  #99
     ('_array',[(0,9),98]),  #100
-    ('_choice',[(0,2),{0:('None',85),1:('Mask',99),2:('OneIndices',100),3:('ZeroIndices',100)}]),  #101
+    ('_choice',[(0,2),{0:('None',84),1:('Mask',99),2:('OneIndices',100),3:('ZeroIndices',100)}]),  #101
     ('_struct',[[('m_unitLink',79,-4),('m_subgroupPriority',10,-3),('m_intraSubgroupPriority',10,-2),('m_count',98,-1)]]),  #102
     ('_array',[(0,9),102]),  #103
     ('_struct',[[('m_subgroupIndex',98,-4),('m_removeMask',101,-3),('m_addSubgroups',103,-2),('m_addUnitTags',64,-1)]]),  #104
@@ -132,30 +132,30 @@ typeinfos = [
     ('_struct',[[('m_controlGroupIndex',1,-3),('m_controlGroupUpdate',12,-2),('m_mask',101,-1)]]),  #106
     ('_struct',[[('m_count',98,-6),('m_subgroupCount',98,-5),('m_activeSubgroupIndex',98,-4),('m_unitTagsChecksum',6,-3),('m_subgroupIndicesChecksum',6,-2),('m_subgroupsChecksum',6,-1)]]),  #107
     ('_struct',[[('m_controlGroupId',1,-2),('m_selectionSyncData',107,-1)]]),  #108
-    ('_array',[(0,3),87]),  #109
+    ('_array',[(0,3),86]),  #109
     ('_struct',[[('m_recipientId',1,-2),('m_resources',109,-1)]]),  #110
     ('_struct',[[('m_chatMessage',29,-1)]]),  #111
     ('_int',[(-128,8)]),  #112
-    ('_struct',[[('x',87,-3),('y',87,-2),('z',87,-1)]]),  #113
+    ('_struct',[[('x',86,-3),('y',86,-2),('z',86,-1)]]),  #113
     ('_struct',[[('m_beacon',112,-9),('m_ally',112,-8),('m_flags',112,-7),('m_build',112,-6),('m_targetUnitTag',6,-5),('m_targetUnitSnapshotUnitLink',79,-4),('m_targetUnitSnapshotUpkeepPlayerId',112,-3),('m_targetUnitSnapshotControlPlayerId',112,-2),('m_targetPoint',113,-1)]]),  #114
     ('_struct',[[('m_speed',12,-1)]]),  #115
     ('_struct',[[('m_delta',112,-1)]]),  #116
-    ('_struct',[[('x',87,-2),('y',87,-1)]]),  #117
-    ('_struct',[[('m_point',117,-4),('m_unit',6,-3),('m_pingedMinimap',13,-2),('m_option',87,-1)]]),  #118
+    ('_struct',[[('x',86,-2),('y',86,-1)]]),  #117
+    ('_struct',[[('m_point',117,-4),('m_unit',6,-3),('m_pingedMinimap',13,-2),('m_option',86,-1)]]),  #118
     ('_struct',[[('m_verb',29,-2),('m_arguments',29,-1)]]),  #119
     ('_struct',[[('m_alliance',6,-2),('m_control',6,-1)]]),  #120
     ('_struct',[[('m_unitTag',6,-1)]]),  #121
     ('_struct',[[('m_unitTag',6,-2),('m_flags',10,-1)]]),  #122
-    ('_struct',[[('m_conversationId',87,-2),('m_replyId',87,-1)]]),  #123
+    ('_struct',[[('m_conversationId',86,-2),('m_replyId',86,-1)]]),  #123
     ('_optional',[20]),  #124
     ('_struct',[[('m_gameUserId',1,-6),('m_observe',24,-5),('m_name',9,-4),('m_toonHandle',124,-3),('m_clanTag',41,-2),('m_clanLogo',42,-1)]]),  #125
     ('_array',[(0,5),125]),  #126
     ('_int',[(0,1)]),  #127
     ('_struct',[[('m_userInfos',126,-2),('m_method',127,-1)]]),  #128
-    ('_struct',[[('m_purchaseItemId',87,-1)]]),  #129
-    ('_struct',[[('m_difficultyLevel',87,-1)]]),  #130
-    ('_choice',[(0,3),{0:('None',85),1:('Checked',13),2:('ValueChanged',6),3:('SelectionChanged',87),4:('TextChanged',30),5:('MouseButton',6)}]),  #131
-    ('_struct',[[('m_controlId',87,-3),('m_eventType',87,-2),('m_eventData',131,-1)]]),  #132
+    ('_struct',[[('m_purchaseItemId',86,-1)]]),  #129
+    ('_struct',[[('m_difficultyLevel',86,-1)]]),  #130
+    ('_choice',[(0,3),{0:('None',84),1:('Checked',13),2:('ValueChanged',6),3:('SelectionChanged',86),4:('TextChanged',30),5:('MouseButton',6)}]),  #131
+    ('_struct',[[('m_controlId',86,-3),('m_eventType',86,-2),('m_eventData',131,-1)]]),  #132
     ('_struct',[[('m_soundHash',6,-2),('m_length',6,-1)]]),  #133
     ('_array',[(0,7),6]),  #134
     ('_struct',[[('m_soundHash',134,-2),('m_length',134,-1)]]),  #135
@@ -164,8 +164,8 @@ typeinfos = [
     ('_struct',[[('m_queryId',79,-2),('m_lengthMs',6,-1)]]),  #138
     ('_struct',[[('m_animWaitQueryId',79,-1)]]),  #139
     ('_struct',[[('m_sound',6,-1)]]),  #140
-    ('_struct',[[('m_transmissionId',87,-2),('m_thread',6,-1)]]),  #141
-    ('_struct',[[('m_transmissionId',87,-1)]]),  #142
+    ('_struct',[[('m_transmissionId',86,-2),('m_thread',6,-1)]]),  #141
+    ('_struct',[[('m_transmissionId',86,-1)]]),  #142
     ('_optional',[80]),  #143
     ('_optional',[79]),  #144
     ('_optional',[112]),  #145
@@ -173,75 +173,60 @@ typeinfos = [
     ('_struct',[[('m_skipType',127,-1)]]),  #147
     ('_int',[(0,11)]),  #148
     ('_struct',[[('x',148,-2),('y',148,-1)]]),  #149
-    ('_struct',[[('m_button',6,-5),('m_down',13,-4),('m_posUI',149,-3),('m_posWorld',88,-2),('m_flags',112,-1)]]),  #150
-    ('_struct',[[('m_posUI',149,-3),('m_posWorld',88,-2),('m_flags',112,-1)]]),  #151
+    ('_struct',[[('m_button',6,-5),('m_down',13,-4),('m_posUI',149,-3),('m_posWorld',87,-2),('m_flags',112,-1)]]),  #150
+    ('_struct',[[('m_posUI',149,-3),('m_posWorld',87,-2),('m_flags',112,-1)]]),  #151
     ('_struct',[[('m_achievementLink',79,-1)]]),  #152
     ('_struct',[[('m_hotkey',6,-2),('m_down',13,-1)]]),  #153
     ('_struct',[[('m_abilLink',79,-3),('m_abilCmdIndex',2,-2),('m_state',112,-1)]]),  #154
     ('_struct',[[('m_soundtrack',6,-1)]]),  #155
-    ('_struct',[[('m_planetId',87,-1)]]),  #156
+    ('_struct',[[('m_planetId',86,-1)]]),  #156
     ('_struct',[[('m_key',112,-2),('m_flags',112,-1)]]),  #157
     ('_struct',[[('m_resources',109,-1)]]),  #158
-    ('_struct',[[('m_fulfillRequestId',87,-1)]]),  #159
-    ('_struct',[[('m_cancelRequestId',87,-1)]]),  #160
-    ('_struct',[[('m_error',87,-2),('m_abil',95,-1)]]),  #161
-    ('_struct',[[('m_researchItemId',87,-1)]]),  #162
-    ('_struct',[[('m_mercenaryId',87,-1)]]),  #163
-    ('_struct',[[('m_battleReportId',87,-2),('m_difficultyLevel',87,-1)]]),  #164
-    ('_struct',[[('m_battleReportId',87,-1)]]),  #165
+    ('_struct',[[('m_fulfillRequestId',86,-1)]]),  #159
+    ('_struct',[[('m_cancelRequestId',86,-1)]]),  #160
+    ('_struct',[[('m_error',86,-2),('m_abil',94,-1)]]),  #161
+    ('_struct',[[('m_researchItemId',86,-1)]]),  #162
+    ('_struct',[[('m_mercenaryId',86,-1)]]),  #163
+    ('_struct',[[('m_battleReportId',86,-2),('m_difficultyLevel',86,-1)]]),  #164
+    ('_struct',[[('m_battleReportId',86,-1)]]),  #165
     ('_int',[(0,19)]),  #166
     ('_struct',[[('m_decrementMs',166,-1)]]),  #167
-    ('_struct',[[('m_portraitId',87,-1)]]),  #168
+    ('_struct',[[('m_portraitId',86,-1)]]),  #168
     ('_struct',[[('m_functionName',20,-1)]]),  #169
-    ('_struct',[[('m_result',87,-1)]]),  #170
-    ('_struct',[[('m_gameMenuItemIndex',87,-1)]]),  #171
+    ('_struct',[[('m_result',86,-1)]]),  #170
+    ('_struct',[[('m_gameMenuItemIndex',86,-1)]]),  #171
     ('_int',[(-32768,16)]),  #172
     ('_struct',[[('m_wheelSpin',172,-2),('m_flags',112,-1)]]),  #173
-    ('_struct',[[('m_purchaseCategoryId',87,-1)]]),  #174
+    ('_struct',[[('m_purchaseCategoryId',86,-1)]]),  #174
     ('_struct',[[('m_button',79,-1)]]),  #175
-    ('_struct',[[('m_cutsceneId',87,-2),('m_bookmarkName',20,-1)]]),  #176
-    ('_struct',[[('m_cutsceneId',87,-1)]]),  #177
-    ('_struct',[[('m_cutsceneId',87,-3),('m_conversationLine',20,-2),('m_altConversationLine',20,-1)]]),  #178
-    ('_struct',[[('m_cutsceneId',87,-2),('m_conversationLine',20,-1)]]),  #179
+    ('_struct',[[('m_cutsceneId',86,-2),('m_bookmarkName',20,-1)]]),  #176
+    ('_struct',[[('m_cutsceneId',86,-1)]]),  #177
+    ('_struct',[[('m_cutsceneId',86,-3),('m_conversationLine',20,-2),('m_altConversationLine',20,-1)]]),  #178
+    ('_struct',[[('m_cutsceneId',86,-2),('m_conversationLine',20,-1)]]),  #179
     ('_struct',[[('m_leaveReason',1,-1)]]),  #180
     ('_struct',[[('m_observe',24,-7),('m_name',9,-6),('m_toonHandle',124,-5),('m_clanTag',41,-4),('m_clanLogo',42,-3),('m_hijack',13,-2),('m_hijackCloneGameUserId',59,-1)]]),  #181
-    ('_optional',[83]),  #182
+    ('_optional',[96]),  #182
     ('_struct',[[('m_state',24,-2),('m_sequence',182,-1)]]),  #183
-    ('_struct',[[('m_sequence',182,-2),('m_target',88,-1)]]),  #184
-    ('_struct',[[('m_sequence',182,-2),('m_target',89,-1)]]),  #185
+    ('_struct',[[('m_target',87,-1)]]),  #184
+    ('_struct',[[('m_target',88,-1)]]),  #185
     ('_struct',[[('m_catalog',10,-4),('m_entry',79,-3),('m_field',9,-2),('m_value',9,-1)]]),  #186
     ('_struct',[[('m_index',6,-1)]]),  #187
     ('_struct',[[('m_shown',13,-1)]]),  #188
     ('_struct',[[('m_recipient',12,-2),('m_string',30,-1)]]),  #189
     ('_struct',[[('m_recipient',12,-2),('m_point',117,-1)]]),  #190
-    ('_struct',[[('m_progress',87,-1)]]),  #191
+    ('_struct',[[('m_progress',86,-1)]]),  #191
     ('_struct',[[('m_status',24,-1)]]),  #192
-    ('_struct',[[('m_scoreValueMineralsCurrent',87,0),('m_scoreValueVespeneCurrent',87,1),('m_scoreValueMineralsCollectionRate',87,2),('m_scoreValueVespeneCollectionRate',87,3),('m_scoreValueWorkersActiveCount',87,4),('m_scoreValueMineralsUsedInProgressArmy',87,5),('m_scoreValueMineralsUsedInProgressEconomy',87,6),('m_scoreValueMineralsUsedInProgressTechnology',87,7),('m_scoreValueVespeneUsedInProgressArmy',87,8),('m_scoreValueVespeneUsedInProgressEconomy',87,9),('m_scoreValueVespeneUsedInProgressTechnology',87,10),('m_scoreValueMineralsUsedCurrentArmy',87,11),('m_scoreValueMineralsUsedCurrentEconomy',87,12),('m_scoreValueMineralsUsedCurrentTechnology',87,13),('m_scoreValueVespeneUsedCurrentArmy',87,14),('m_scoreValueVespeneUsedCurrentEconomy',87,15),('m_scoreValueVespeneUsedCurrentTechnology',87,16),('m_scoreValueMineralsLostArmy',87,17),('m_scoreValueMineralsLostEconomy',87,18),('m_scoreValueMineralsLostTechnology',87,19),('m_scoreValueVespeneLostArmy',87,20),('m_scoreValueVespeneLostEconomy',87,21),('m_scoreValueVespeneLostTechnology',87,22),('m_scoreValueMineralsKilledArmy',87,23),('m_scoreValueMineralsKilledEconomy',87,24),('m_scoreValueMineralsKilledTechnology',87,25),('m_scoreValueVespeneKilledArmy',87,26),('m_scoreValueVespeneKilledEconomy',87,27),('m_scoreValueVespeneKilledTechnology',87,28),('m_scoreValueFoodUsed',87,29),('m_scoreValueFoodMade',87,30),('m_scoreValueMineralsUsedActiveForces',87,31),('m_scoreValueVespeneUsedActiveForces',87,32),('m_scoreValueMineralsFriendlyFireArmy',87,33),('m_scoreValueMineralsFriendlyFireEconomy',87,34),('m_scoreValueMineralsFriendlyFireTechnology',87,35),('m_scoreValueVespeneFriendlyFireArmy',87,36),('m_scoreValueVespeneFriendlyFireEconomy',87,37),('m_scoreValueVespeneFriendlyFireTechnology',87,38)]]),  #193
+    ('_struct',[[('m_scoreValueMineralsCurrent',86,0),('m_scoreValueVespeneCurrent',86,1),('m_scoreValueMineralsCollectionRate',86,2),('m_scoreValueVespeneCollectionRate',86,3),('m_scoreValueWorkersActiveCount',86,4),('m_scoreValueMineralsUsedInProgressArmy',86,5),('m_scoreValueMineralsUsedInProgressEconomy',86,6),('m_scoreValueMineralsUsedInProgressTechnology',86,7),('m_scoreValueVespeneUsedInProgressArmy',86,8),('m_scoreValueVespeneUsedInProgressEconomy',86,9),('m_scoreValueVespeneUsedInProgressTechnology',86,10),('m_scoreValueMineralsUsedCurrentArmy',86,11),('m_scoreValueMineralsUsedCurrentEconomy',86,12),('m_scoreValueMineralsUsedCurrentTechnology',86,13),('m_scoreValueVespeneUsedCurrentArmy',86,14),('m_scoreValueVespeneUsedCurrentEconomy',86,15),('m_scoreValueVespeneUsedCurrentTechnology',86,16),('m_scoreValueMineralsLostArmy',86,17),('m_scoreValueMineralsLostEconomy',86,18),('m_scoreValueMineralsLostTechnology',86,19),('m_scoreValueVespeneLostArmy',86,20),('m_scoreValueVespeneLostEconomy',86,21),('m_scoreValueVespeneLostTechnology',86,22),('m_scoreValueMineralsKilledArmy',86,23),('m_scoreValueMineralsKilledEconomy',86,24),('m_scoreValueMineralsKilledTechnology',86,25),('m_scoreValueVespeneKilledArmy',86,26),('m_scoreValueVespeneKilledEconomy',86,27),('m_scoreValueVespeneKilledTechnology',86,28),('m_scoreValueFoodUsed',86,29),('m_scoreValueFoodMade',86,30),('m_scoreValueMineralsUsedActiveForces',86,31),('m_scoreValueVespeneUsedActiveForces',86,32),('m_scoreValueMineralsFriendlyFireArmy',86,33),('m_scoreValueMineralsFriendlyFireEconomy',86,34),('m_scoreValueMineralsFriendlyFireTechnology',86,35),('m_scoreValueVespeneFriendlyFireArmy',86,36),('m_scoreValueVespeneFriendlyFireEconomy',86,37),('m_scoreValueVespeneFriendlyFireTechnology',86,38)]]),  #193
     ('_struct',[[('m_playerId',1,0),('m_stats',193,1)]]),  #194
     ('_struct',[[('m_unitTagIndex',6,0),('m_unitTagRecycle',6,1),('m_unitTypeName',29,2),('m_controlPlayerId',1,3),('m_upkeepPlayerId',1,4),('m_x',10,5),('m_y',10,6)]]),  #195
-    ('_struct',[[('m_unitTagIndex',6,0),('m_unitTagRecycle',6,1),('m_x',10,2),('m_y',10,3)]]),  #196
-    ('_struct',[[('m_unitTagIndex',6,0),('m_unitTagRecycle',6,1),('m_killerPlayerId',59,2),('m_x',10,3),('m_y',10,4),('m_killerUnitTagIndex',43,5),('m_killerUnitTagRecycle',43,6)]]),  #197
-    ('_struct',[[('m_unitTagIndex',6,0),('m_unitTagRecycle',6,1),('m_controlPlayerId',1,2),('m_upkeepPlayerId',1,3)]]),  #198
-    ('_struct',[[('m_unitTagIndex',6,0),('m_unitTagRecycle',6,1),('m_unitTypeName',29,2)]]),  #199
-    ('_struct',[[('m_playerId',1,0),('m_upgradeTypeName',29,1),('m_count',87,2)]]),  #200
-    ('_struct',[[('m_unitTagIndex',6,0),('m_unitTagRecycle',6,1)]]),  #201
-    ('_array',[(0,10),87]),  #202
-    ('_struct',[[('m_firstUnitIndex',6,0),('m_items',202,1)]]),  #203
-    ('_struct',[[('m_playerId',1,0),('m_type',6,1),('m_userId',43,2),('m_slotId',43,3)]]),  #204
-    ('_struct',[[('m_key',29,0)]]),  #205
-    ('_struct',[[('__parent',205,0),('m_value',29,1)]]),  #206
-    ('_array',[(0,6),206]),  #207
-    ('_optional',[207]),  #208
-    ('_struct',[[('__parent',205,0),('m_value',87,1)]]),  #209
-    ('_array',[(0,6),209]),  #210
-    ('_optional',[210]),  #211
-    ('_struct',[[('m_eventName',29,0),('m_stringData',208,1),('m_intData',211,2),('m_fixedData',211,3)]]),  #212
-    ('_struct',[[('m_value',6,0),('m_time',6,1)]]),  #213
-    ('_array',[(0,6),213]),  #214
-    ('_array',[(0,5),214]),  #215
-    ('_struct',[[('m_name',29,0),('m_values',215,1)]]),  #216
-    ('_array',[(0,21),216]),  #217
-    ('_struct',[[('m_instanceList',217,0)]]),  #218
+    ('_struct',[[('m_unitTagIndex',6,0),('m_unitTagRecycle',6,1),('m_killerPlayerId',59,2),('m_x',10,3),('m_y',10,4),('m_killerUnitTagIndex',43,5),('m_killerUnitTagRecycle',43,6)]]),  #196
+    ('_struct',[[('m_unitTagIndex',6,0),('m_unitTagRecycle',6,1),('m_controlPlayerId',1,2),('m_upkeepPlayerId',1,3)]]),  #197
+    ('_struct',[[('m_unitTagIndex',6,0),('m_unitTagRecycle',6,1),('m_unitTypeName',29,2)]]),  #198
+    ('_struct',[[('m_playerId',1,0),('m_upgradeTypeName',29,1),('m_count',86,2)]]),  #199
+    ('_struct',[[('m_unitTagIndex',6,0),('m_unitTagRecycle',6,1)]]),  #200
+    ('_array',[(0,10),86]),  #201
+    ('_struct',[[('m_firstUnitIndex',6,0),('m_items',201,1)]]),  #202
+    ('_struct',[[('m_playerId',1,0),('m_type',6,1),('m_userId',43,2),('m_slotId',43,3)]]),  #203
 ]
 
 # Map from protocol NNet.Game.*Event eventid to (typeid, name)
@@ -257,8 +242,8 @@ game_event_types = {
     21: (82, 'NNet.Game.SSaveGameEvent'),
     22: (78, 'NNet.Game.SSaveGameDoneEvent'),
     23: (78, 'NNet.Game.SLoadGameDoneEvent'),
-    25: (84, 'NNet.Game.SCommandManagerResetEvent'),
-    26: (92, 'NNet.Game.SGameCheatEvent'),
+    25: (83, 'NNet.Game.SCommandManagerResetEvent'),
+    26: (91, 'NNet.Game.SGameCheatEvent'),
     27: (97, 'NNet.Game.SCmdEvent'),
     28: (105, 'NNet.Game.SSelectionDeltaEvent'),
     29: (106, 'NNet.Game.SControlGroupUpdateEvent'),
@@ -365,17 +350,14 @@ message_eventid_typeid = 1
 tracker_event_types = {
     0: (194, 'NNet.Replay.Tracker.SPlayerStatsEvent'),
     1: (195, 'NNet.Replay.Tracker.SUnitBornEvent'),
-    2: (197, 'NNet.Replay.Tracker.SUnitDiedEvent'),
-    3: (198, 'NNet.Replay.Tracker.SUnitOwnerChangeEvent'),
-    4: (199, 'NNet.Replay.Tracker.SUnitTypeChangeEvent'),
-    5: (200, 'NNet.Replay.Tracker.SUpgradeEvent'),
+    2: (196, 'NNet.Replay.Tracker.SUnitDiedEvent'),
+    3: (197, 'NNet.Replay.Tracker.SUnitOwnerChangeEvent'),
+    4: (198, 'NNet.Replay.Tracker.SUnitTypeChangeEvent'),
+    5: (199, 'NNet.Replay.Tracker.SUpgradeEvent'),
     6: (195, 'NNet.Replay.Tracker.SUnitInitEvent'),
-    7: (201, 'NNet.Replay.Tracker.SUnitDoneEvent'),
-    8: (203, 'NNet.Replay.Tracker.SUnitPositionsEvent'),
-    9: (204, 'NNet.Replay.Tracker.SPlayerSetupEvent'),
-    10: (212, 'NNet.Replay.Tracker.SStatGameEvent'),
-    11: (218, 'NNet.Replay.Tracker.SScoreResultEvent'),
-    12: (196, 'NNet.Replay.Tracker.SUnitRevivedEvent'),
+    7: (200, 'NNet.Replay.Tracker.SUnitDoneEvent'),
+    8: (202, 'NNet.Replay.Tracker.SUnitPositionsEvent'),
+    9: (203, 'NNet.Replay.Tracker.SPlayerSetupEvent'),
 }
 
 # The typeid of the NNet.Replay.Tracker.EEventId enum.
