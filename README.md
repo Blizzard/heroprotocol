@@ -54,6 +54,7 @@ py heroprotocol.py --details "Blackheart's Bay.StormReplay" > output.txt
 
 `--stats` print game stats
 
+`--json` protocol information is printed in json format
 
 # Tracker Events
 
