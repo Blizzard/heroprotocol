@@ -91,7 +91,7 @@ class MPQArchive(object):
         to the constructor. The 'files' attribute will be unavailable
         if you do this.
         """
-        if hasattr(filename, 'read'):
+        if isinstance(filename, file):
             self.file = filename
         else:
             self.file = open(filename, 'rb')
@@ -250,17 +250,15 @@ class MPQArchive(object):
             os.mkdir(archive_name)
         os.chdir(archive_name)
         for filename, data in self.extract().items():
-            f = open(filename, 'wb')
-            f.write(data)
-            f.close()
+            with open(filename, 'wb') as f:
+                f.write(data)
 
     def extract_files(self, *filenames):
         """Extract given files from the archive to disk."""
         for filename in filenames:
             data = self.read_file(filename)
-            f = open(filename, 'wb')
-            f.write(data)
-            f.close()
+            with open(filename, 'wb') as f:
+                f.write(data)
 
     def print_headers(self):
         print "MPQ archive header"

@@ -28,8 +28,11 @@ import json
 from mpyq import mpyq
 import protocol29406
 
+
 class EventLogger:
-    def __init__(self):
+
+    def __init__(self, use_json):
+        self._use_json = use_json
         self._event_stats = {}
 
     def log(self, output, event):
@@ -40,9 +43,8 @@ class EventLogger:
             stat[1] += event['_bits']  # count of bits
             self._event_stats[event['_event']] = stat
         # write structure
-        if args.json:
-            s = json.dumps(event, encoding="ISO-8859-1");
-            print(s);
+        if self._use_json:
+            print(json.dumps(event, encoding="ISO-8859-1"))
         else:
             pprint.pprint(event, stream=output)
 
@@ -75,9 +77,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     archive = mpyq.MPQArchive(args.replay_file)
-
-    logger = EventLogger()
-    logger.args = args;
+    logger = EventLogger(args.json)
 
     # Read the protocol header, this can be read with any protocol
     contents = archive.header['user_data_header']['content']
