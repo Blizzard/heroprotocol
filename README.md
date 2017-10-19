@@ -22,7 +22,8 @@ heroprotocol supports all Hereos of the Storm replay files that were written wit
 # How to Use
 
 A working installation of Python 2.x is required. From the folder where *heroprotocol* is located, type the following into the command line, assuming that the replay file was also copied into the same folder:
-```python
+
+```bash
 py heroprotocol.py --<option> "<replayFileName>" > output.txt
 ```
 
@@ -30,7 +31,7 @@ If you want the output shown directly in the terminal, leave out the `> output.t
 
 ## Example Usage
 
-```python
+```bash
 py heroprotocol.py --details "Blackheart's Bay.StormReplay" > output.txt
 ```
 
