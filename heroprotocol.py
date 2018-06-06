@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright (c) 2015 Blizzard Entertainment
+# Copyright (c) 2018 Blizzard Entertainment
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -41,8 +41,8 @@ class EventLogger:
             self._event_stats[event['_event']] = stat
         # write structure
         if args.json:
-            s = json.dumps(event, encoding="ISO-8859-1");
-            print(s);
+            s = json.dumps(event, encoding="ISO-8859-1")
+            print(s)
         else:
             pprint.pprint(event, stream=output)
 
@@ -77,7 +77,7 @@ if __name__ == '__main__':
     archive = mpyq.MPQArchive(args.replay_file)
 
     logger = EventLogger()
-    logger.args = args;
+    logger.args = args
 
     # Read the protocol header, this can be read with any protocol
     contents = archive.header['user_data_header']['content']
