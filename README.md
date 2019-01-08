@@ -21,7 +21,7 @@ heroprotocol supports all Hereos of the Storm replay files that were written wit
 
 # How to Use
 
-A working installation of Python 2.x is required. From the folder where *heroprotocol* is located, type the following into the command line, assuming that the replay file was also copied into the same folder:
+A working installation of Python 2.x is required. From the folder where *heroprotocol* is located, type the following into the command line:
 
 ```bash
 py heroprotocol.py --[tracker-event-option] "<replayFileName>" > output.txt
@@ -88,7 +88,7 @@ Thanks to Ben Barrett of [HOTSLogs](http://www.hotslogs.com) for feedback on and
 
 # License
 
-Copyright © 2018 Blizzard Entertainment
+Copyright © 2019 Blizzard Entertainment
 
-Open sourced under the MIT license. See the included LICENSE file for more information.
+Open sourced under the MIT license. See the included [LICENSE](LICENSE) file for more information.
 
