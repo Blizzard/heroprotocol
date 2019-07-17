@@ -17,7 +17,7 @@ Note that heroprotocol does not expose game balance information or provide any k
 
 # Supported Versions
 
-heroprotocol supports all Hereos of the Storm replay files that were written with retail versions of the game.
+heroprotocol supports all Hereos of the Storm replay files that were written with retail and PTR versions of the game.
 
 # How to Use
 
@@ -77,6 +77,10 @@ for i in xrange(0, len(event['m_items']), 3):
 * You may receive a NNet.Replay.Tracker.SUnitDiedEvent after either a UnitInit or UnitBorn event for the corresponding unit tag.
 * In NNet.Replay.Tracker.SPlayerStatsEvent, m_scoreValueFoodUsed and m_scoreValueFoodMade are in fixed point (divide by 4096 for integer values). All other values are in integers.
 * There's a known issue where revived units are not tracked, and placeholder units track death but not birth.
+
+# Reporting Bugs
+
+Please report bugs at the [Heroes of the Storm Bug Report Forum](https://us.forums.blizzard.com/en/heroes/c/bug-report).
 
 # Acknowledgements
 
