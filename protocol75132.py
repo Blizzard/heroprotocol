@@ -87,7 +87,7 @@ typeinfos = [
     ('_optional',[2]),  #61
     ('_struct',[[('m_color',61,-1)]]),  #62
     ('_array',[(0,17),6]),  #63
-    ('_struct',[[('m_hero',19,-2),('m_tier',10,-1)]]),  #64
+    ('_struct',[[('m_hero',6,-2),('m_tier',10,-1)]]),  #64
     ('_array',[(0,10),64]),  #65
     ('_struct',[[('m_control',10,-26),('m_userId',60,-25),('m_teamId',1,-24),('m_colorPref',62,-23),('m_racePref',44,-22),('m_difficulty',3,-21),('m_aiBuild',0,-20),('m_handicap',0,-19),('m_observe',24,-18),('m_logoIndex',6,-17),('m_hero',46,-16),('m_skin',46,-15),('m_mount',46,-14),('m_workingSetSlotId',25,-13),('m_rewards',63,-12),('m_toonHandle',20,-11),('m_tandemLeaderUserId',60,-10),('m_hasSilencePenalty',13,-9),('m_hasVoiceSilencePenalty',13,-8),('m_isBlizzardStaff',13,-7),('m_hasActiveBoost',13,-6),('m_banner',46,-5),('m_spray',46,-4),('m_announcerPack',46,-3),('m_voiceLine',46,-2),('m_heroMasteryTiers',65,-1)]]),  #66
     ('_array',[(0,5),66]),  #67
