@@ -4,6 +4,7 @@
 """
 mpyq is a Python library for reading MPQ (MoPaQ) archives.
 """
+from __future__ import print_function
 
 import bz2
 import cStringIO
@@ -263,47 +264,47 @@ class MPQArchive(object):
             f.close()
 
     def print_headers(self):
-        print "MPQ archive header"
-        print "------------------"
+        print("MPQ archive header")
+        print("------------------")
         for key, value in self.header.iteritems():
             if key == "user_data_header":
                 continue
-            print "{0:30} {1!r}".format(key, value)
+            print("{0:30} {1!r}".format(key, value))
         if self.header.get('user_data_header'):
-            print
-            print "MPQ user data header"
-            print "--------------------"
+            print()
+            print("MPQ user data header")
+            print("--------------------")
             for key, value in self.header['user_data_header'].iteritems():
-                print "{0:30} {1!r}".format(key, value)
-        print
+                print("{0:30} {1!r}".format(key, value))
+        print()
 
     def print_hash_table(self):
-        print "MPQ archive hash table"
-        print "----------------------"
-        print " Hash A   Hash B  Locl Plat BlockIdx"
+        print("MPQ archive hash table")
+        print("----------------------")
+        print(" Hash A   Hash B  Locl Plat BlockIdx")
         for entry in self.hash_table:
-            print '%08X %08X %04X %04X %08X' % entry
-        print
+            print('%08X %08X %04X %04X %08X' % entry)
+        print()
 
     def print_block_table(self):
-        print "MPQ archive block table"
-        print "-----------------------"
-        print " Offset  ArchSize RealSize  Flags"
+        print("MPQ archive block table")
+        print("-----------------------")
+        print(" Offset  ArchSize RealSize  Flags")
         for entry in self.block_table:
-            print '%08X %8d %8d %8X' % entry
-        print
+            print('%08X %8d %8d %8X' % entry)
+        print()
 
     def print_files(self):
         if self.files:
-            print "Files"
-            print "-----"
+            print("Files")
+            print("-----")
             width = max(len(name) for name in self.files) + 2
             for filename in self.files:
                 hash_entry = self.get_hash_table_entry(filename)
                 block_entry = self.block_table[hash_entry.block_table_index]
-                print "{0:{width}} {1:>8} bytes".format(filename,
+                print("{0:{width}} {1:>8} bytes".format(filename,
                                                         block_entry.size,
-                                                        width=width)
+                                                        width=width))
 
     def _hash(self, string, hash_type):
         """Hash a string using MPQ's hash function."""
