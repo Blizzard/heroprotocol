@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+from __future__ import print_function
 import sys
 import argparse
 import pprint
@@ -48,7 +49,7 @@ class EventLogger:
 
     def log_stats(self, output):
         for name, stat in sorted(self._event_stats.iteritems(), key=lambda x: x[1][1]):
-            print >> output, '"%s", %d, %d,' % (name, stat[0], stat[1] / 8)
+            print('"%s", %d, %d,' % (name, stat[0], stat[1] / 8), file=output)
 
 
 if __name__ == '__main__':
@@ -90,7 +91,7 @@ if __name__ == '__main__':
     try:
         protocol = __import__('protocol%s' % (baseBuild,))
     except:
-        print >> sys.stderr, 'Unsupported base build: %d' % baseBuild
+        print('Unsupported base build: %d' % baseBuild, file=sys.stderr)
         sys.exit(1)
 
     # Print protocol details
