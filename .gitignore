@@ -5,3 +5,6 @@
 *.StormReplay
 
 .vscode/
+__pycache__/
+build/
+dist/
