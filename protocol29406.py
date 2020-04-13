@@ -364,7 +364,7 @@ replay_initdata_typeid = 67
 
 def _varuint32_value(value):
     # Returns the numeric value from a SVarUint32 instance.
-    for k,v in value.iteritems():
+    for v in value.values():
         return v
     return 0
 

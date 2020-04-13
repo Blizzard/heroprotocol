@@ -47,7 +47,7 @@ class EventLogger:
             pprint.pprint(event, stream=output)
 
     def log_stats(self, output):
-        for name, stat in sorted(self._event_stats.iteritems(), key=lambda x: x[1][1]):
+        for name, stat in sorted(self._event_stats.items(), key=lambda x: x[1][1]):
             print('"%s", %d, %d,' % (name, stat[0], stat[1] / 8), file=output)
 
 
