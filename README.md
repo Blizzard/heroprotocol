@@ -1,7 +1,9 @@
-# heroprotocol.py
+# heroprotocol
 
-heroprotocol.py is a series of reference [Python](https://www.python.org/downloads/) scripts and standalone tool to
-decode Heroes of the Storm replay files into Python data structures.
+heroprotocol is a [Python](https://www.python.org/downloads/) library/module to decode Heroes of the Storm replay
+files into Python data structures.
+
+The tool is available as a [PyPI Package](https://pypi.org/project/heroprotocol/) or as source code.
 
 Currently heroprotocol can decode these structures and events:
 
@@ -22,21 +24,34 @@ it's meant to be just the first tool in the chain for your data mining applicati
 
 heroprotocol supports all Hereos of the Storm replay files that were written with retail and PTR versions of the game.
 
-## How to Use
+## Requirements
 
-A working installation of Python 2.x is required. From the folder where *heroprotocol* is located, type the following
-into the command line:
+A working installation of Python 3.x is required.
+
+## Installation
+
+Either install/update using pip:
 
 ```bash
-py heroprotocol.py --[tracker-event-option] "<replayFileName>" > output.txt
+python -m pip install --upgrade heroprotocol
 ```
 
-If you want the output shown directly in the terminal, leave out the `> output.txt`.
+Or clone the repository and run from source:
+
+```bash
+git clone https://github.com/Blizzard/heroprotocol.git
+```
 
 ## Example Usage
 
 ```bash
-py heroprotocol.py --details "Blackheart's Bay.StormReplay" > output.txt
+python -m heroprotocol --[tracker-event-option] "<replayFileName>" > output.txt
+```
+
+If you want the output shown directly in the terminal, leave out the `> output.txt`.
+
+```bash
+python -m heroprotocol --details "Blackheart's Bay.StormReplay"
 ```
 
 ## Command Line Arguments
@@ -90,14 +105,24 @@ Please report bugs at the [Heroes of the Storm Bug Report Forum](https://us.foru
 
 ## Acknowledgements
 
-The standalone tool uses [mpyq](https://github.com/eagleflo/mpyq) to read mopaq files.
+The standalone tool uses [mpyq](https://github.com/eagleflo/mpyq) by [Aku Kotkavuo](https://github.com/eagleflo) to read
+mopaq files.
 
-Thanks to David Joerg and Graylin Kim of [GGTracker](http://www.ggtracker.com) for design feedback and beta-testing of the s2protocol library that heroprotocol is based upon.
+Thank you to [healingbrew](https://github.com/healingbrew), [MGatner](https://github.com/mgatner),
+[koliva8245](https://github.com/koliva8245), [casualMLG](https://github.com/casualmlg), and others for submitting issues
+and feedback.
 
-Thanks to Ben Barrett of [HOTSLogs](http://www.hotslogs.com) for feedback on and beta-testing of the heroprotocol library.
+Thank you to [Christian Clauss](https://github.com/cclauss), [Jingbei Li](https://github.com/petronny), and
+[Regner Blok-Andersen](https://github.com/regner) for contributions to the Python 3 update.
+
+Thank you to David Joerg and Graylin Kim of [GGTracker](http://www.ggtracker.com) for design feedback and beta-testing of
+the s2protocol library that heroprotocol is based upon.
+
+Thanks to Ben Barrett of [HOTSLogs](http://www.hotslogs.com) for early feedback on and beta-testing of the heroprotocol
+library.
 
 ## License
 
-Copyright © 2015-2020 Blizzard Entertainment
+Copyright (c) 2020 Blizzard Entertainment
 
 Open sourced under the MIT license. See the included [LICENSE](LICENSE) file for more information.
