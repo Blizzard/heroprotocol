@@ -1,4 +1,8 @@
 #!/usr/bin/env python
+#
+# Copyright 2015-2020 Blizzard Entertainment. Subject to the MIT license.
+# See the included LICENSE file for more information.
+#
 
 import os
 import re
@@ -6,11 +10,7 @@ import imp
 import sys
 
 
-__all__ = [
-    'build',
-    'latest',
-    'list_all',
-]
+__all__ = 'build', 'latest', 'list_all'
 
 
 def _import_protocol(base_path, protocol_module_name):
