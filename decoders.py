@@ -66,7 +66,10 @@ class BitPackedBuffer:
             if self._nextbits == 0:
                 if self.done():
                     raise TruncatedError(self)
-                self._next = ord(self._data[self._used])
+                try:
+                    self._next = ord(self._data[self._used])
+                except:
+                    self._next = self._data[self._used]
                 self._used += 1
                 self._nextbits = 8
             copybits = min(bits - resultbits, self._nextbits)
@@ -81,7 +84,7 @@ class BitPackedBuffer:
         return result
 
     def read_unaligned_bytes(self, bytes):
-        return ''.join([chr(self.read_bits(8)) for i in xrange(bytes)])
+        return ''.join([chr(self.read_bits(8)) for i in range(bytes)])
 
 
 class BitPackedDecoder:
@@ -109,7 +112,7 @@ class BitPackedDecoder:
 
     def _array(self, bounds, typeid):
         length = self._int(bounds)
-        return [self.instance(typeid) for i in xrange(length)]
+        return [self.instance(typeid) for i in range(length)]
 
     def _bitarray(self, bounds):
         length = self._int(bounds)
@@ -206,7 +209,7 @@ class VersionedDecoder:
     def _array(self, bounds, typeid):
         self._expect_skip(0)
         length = self._vint()
-        return [self.instance(typeid) for i in xrange(length)]
+        return [self.instance(typeid) for i in range(length)]
 
     def _bitarray(self, bounds):
         self._expect_skip(1)
@@ -259,7 +262,7 @@ class VersionedDecoder:
         self._expect_skip(5)
         result = {}
         length = self._vint()
-        for i in xrange(length):
+        for i in range(length):
             tag = self._vint()
             field = next((f for f in fields if f[2] == tag), None)
             if field:
@@ -281,7 +284,7 @@ class VersionedDecoder:
         skip = self._buffer.read_bits(8)
         if skip == 0:  # array
             length = self._vint()
-            for i in xrange(length):
+            for i in range(length):
                 self._skip_instance()
         elif skip == 1:  # bitblob
             length = self._vint()
@@ -298,7 +301,7 @@ class VersionedDecoder:
                 self._skip_instance()
         elif skip == 5:  # struct
             length = self._vint()
-            for i in xrange(length):
+            for i in range(length):
                 tag = self._vint()
                 self._skip_instance()
         elif skip == 6:  # u8

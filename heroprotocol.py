@@ -25,7 +25,7 @@ import argparse
 import pprint
 import json
 
-from mpyq import mpyq
+import mpyq
 import protocol29406
 
 class EventLogger:

@@ -1,0 +1,3 @@
+[submodule "mpyq"]
+	path = mpyq
+	url = https://github.com/eagleflo/mpyq/
