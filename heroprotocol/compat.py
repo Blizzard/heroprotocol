@@ -7,8 +7,6 @@
 import sys
 import io
 
-__all__ = 'PY3', 'byte_to_int', 'get_stream'
-
 
 PY3 = sys.version_info.major == 3
 

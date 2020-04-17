@@ -6,14 +6,14 @@
 
 from __future__ import print_function
 
-import sys
 import argparse
-import pprint
+import sys
 import json
 import mpyq
+import pprint
 
-from heroprotocol.versions import build, latest
-from heroprotocol.compat import get_stream
+from .compat import get_stream
+from .versions import build, latest
 
 
 class EventLogger:

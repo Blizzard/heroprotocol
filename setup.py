@@ -8,6 +8,7 @@ import sys
 import setuptools
 import heroprotocol.build
 
+
 with open('README.md', 'r') as fh:
     long_description = fh.read()
 
@@ -31,6 +32,7 @@ setuptools.setup(
         'Intended Audience :: End Users/Desktop',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
+        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Topic :: Games/Entertainment :: Real Time Strategy',
         'Topic :: Software Development :: Libraries',
@@ -43,5 +45,5 @@ setuptools.setup(
             'heroprotocol = heroprotocol.heroprotocol:main',
         ]
     },
-    python_requires='>=3'
+    python_requires='>=2.7'
 )

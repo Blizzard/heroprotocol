@@ -1,3 +1,0 @@
-recursive-include docs *
-include LICENSE
-include README.md

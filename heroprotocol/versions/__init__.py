@@ -10,9 +10,6 @@ import imp
 import sys
 
 
-__all__ = 'build', 'latest', 'list_all'
-
-
 def _import_protocol(base_path, protocol_module_name):
     """
     Import a module from a base path, used to import protocol modules.

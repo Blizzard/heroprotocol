@@ -4,6 +4,7 @@
 # See the included LICENSE file for more information.
 #
 
-from heroprotocol import heroprotocol
+from . import hero_cli
 
-heroprotocol.main()
+
+hero_cli.main()

@@ -4,9 +4,11 @@
 # See the included LICENSE file for more information.
 #
 
+__all__ = ['TruncatedError', 'CorruptedError', 'BitPackedBuffer', 'BitPackedDecoder', 'VersionedDecoder']
+
 import struct
 
-from heroprotocol.compat import byte_to_int
+from .compat import byte_to_int
 
 
 class TruncatedError(Exception):
