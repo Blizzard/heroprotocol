@@ -4,7 +4,13 @@
 # See the included LICENSE file for more information.
 #
 
-__all__ = ['TruncatedError', 'CorruptedError', 'BitPackedBuffer', 'BitPackedDecoder', 'VersionedDecoder']
+__all__ = [
+    'TruncatedError',
+    'CorruptedError',
+    'BitPackedBuffer',
+    'BitPackedDecoder',
+    'VersionedDecoder',
+]
 
 import six
 import struct
@@ -24,16 +30,16 @@ class BitPackedBuffer:
         self._used = 0
         self._next = None
         self._nextbits = 0
-        self._bigendian = (endian == 'big')
+        self._bigendian = endian == 'big'
 
     def __str__(self):
-        s = '{:02x}'.format(six.byte2int(self._data[self._used])) \
-            if self._used < len(self._data) else '--'
+        s = (
+            '{:02x}'.format(six.byte2int(self._data[self._used]))
+            if self._used < len(self._data)
+            else '--'
+        )
         return 'buffer({0:02x}/{1:d},[{2:d}]={3:s})'.format(
-            self._nextbits and self._next or 0,
-            self._nextbits,
-            self._used,
-            s
+            self._nextbits and self._next or 0, self._nextbits, self._used, s
         )
 
     def done(self):
@@ -47,7 +53,7 @@ class BitPackedBuffer:
 
     def read_aligned_bytes(self, bytes):
         self.byte_align()
-        data = six.ensure_binary(self._data[self._used:self._used + bytes])
+        data = six.ensure_binary(self._data[self._used : self._used + bytes])
         self._used += bytes
         if len(data) != bytes:
             raise TruncatedError(self)
@@ -64,7 +70,7 @@ class BitPackedBuffer:
                 self._used += 1
                 self._nextbits = 8
             copybits = min(bits - resultbits, self._nextbits)
-            copy = (self._next & ((1 << copybits) - 1))
+            copy = self._next & ((1 << copybits) - 1)
             if self._bigendian:
                 result |= copy << (bits - resultbits - copybits)
             else:
@@ -125,7 +131,9 @@ class BitPackedDecoder:
         return {field[0]: self.instance(field[1])}
 
     def _fourcc(self):
-        return six.ensure_binary(struct.pack('!I', self._buffer.read_bits(32)), encoding='ascii')
+        return six.ensure_binary(
+            struct.pack('!I', self._buffer.read_bits(32)), encoding='ascii'
+        )
 
     def _int(self, bounds):
         return bounds[0] + self._buffer.read_bits(bounds[1])
@@ -189,11 +197,11 @@ class VersionedDecoder:
     def _vint(self):
         b = self._buffer.read_bits(8)
         negative = b & 1
-        result = (b >> 1) & 0x3f
+        result = (b >> 1) & 0x3F
         bits = 6
         while (b & 0x80) != 0:
             b = self._buffer.read_bits(8)
-            result |= (b & 0x7f) << bits
+            result |= (b & 0x7F) << bits
             bits += 7
         return -result if negative else result
 

@@ -41,8 +41,7 @@ def list_all(base_path=None):
     if base_path is None:
         base_path = os.path.dirname(__file__)
     pattern = re.compile(r'protocol[0-9]+\.py$')
-    files = [ f for f in os.listdir(base_path) \
-        if pattern.match(f) ]
+    files = [f for f in os.listdir(base_path) if pattern.match(f)]
     files.sort()
     return files
 

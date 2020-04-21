@@ -42,24 +42,27 @@ class EventLogger:
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('replay_file', help='.StormReplay file to load')
-    parser.add_argument("--gameevents", help="print game events",
-                        action="store_true")
-    parser.add_argument("--messageevents", help="print message events",
-                        action="store_true")
-    parser.add_argument("--trackerevents", help="print tracker events",
-                        action="store_true")
-    parser.add_argument("--attributeevents", help="print attributes events",
-                        action="store_true")
-    parser.add_argument("--header", help="print protocol header",
-                        action="store_true")
-    parser.add_argument("--details", help="print protocol details",
-                        action="store_true")
-    parser.add_argument("--initdata", help="print protocol initdata",
-                        action="store_true")
-    parser.add_argument("--stats", help="print stats",
-                        action="store_true")
-    parser.add_argument("--json", help="protocol information is printed in json format.",
-                        action="store_true")
+    parser.add_argument("--gameevents", help="print game events", action="store_true")
+    parser.add_argument(
+        "--messageevents", help="print message events", action="store_true"
+    )
+    parser.add_argument(
+        "--trackerevents", help="print tracker events", action="store_true"
+    )
+    parser.add_argument(
+        "--attributeevents", help="print attributes events", action="store_true"
+    )
+    parser.add_argument("--header", help="print protocol header", action="store_true")
+    parser.add_argument("--details", help="print protocol details", action="store_true")
+    parser.add_argument(
+        "--initdata", help="print protocol initdata", action="store_true"
+    )
+    parser.add_argument("--stats", help="print stats", action="store_true")
+    parser.add_argument(
+        "--json",
+        help="protocol information is printed in json format.",
+        action="store_true",
+    )
     args = parser.parse_args()
 
     archive = mpyq.MPQArchive(args.replay_file)
@@ -90,7 +93,10 @@ def main():
     if args.initdata:
         contents = archive.read_file('replay.initData')
         initdata = protocol.decode_replay_initdata(contents)
-        logger.log(sys.stdout, initdata['m_syncLobbyState']['m_gameDescription']['m_cacheHandles'])
+        logger.log(
+            sys.stdout,
+            initdata['m_syncLobbyState']['m_gameDescription']['m_cacheHandles'],
+        )
         logger.log(sys.stdout, initdata)
 
     # Print game events and/or game events stats

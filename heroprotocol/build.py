@@ -27,9 +27,11 @@ def git_commit_hash():
     git_version_cmd = ['git', 'rev-parse', 'HEAD']
     lines = read_command_output(git_version_cmd)
     if len(lines) == 0 or len(lines > 1):
-        raise Exception("invalid output '{}' from '{}'".format(
-            '\\n'.join(lines),
-            ' '.join(git_version_cmd)))
+        raise Exception(
+            "invalid output '{}' from '{}'".format(
+                '\\n'.join(lines), ' '.join(git_version_cmd)
+            )
+        )
 
     git_commit_hash = (''.join(lines))[0:8]
 

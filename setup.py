@@ -21,10 +21,7 @@ setuptools.setup(
     description='Python library to decode Heroes of the Storm replays',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    packages=[
-        'heroprotocol',
-        'heroprotocol.versions',
-    ],
+    packages=['heroprotocol', 'heroprotocol.versions',],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
@@ -41,9 +38,7 @@ setuptools.setup(
     ],
     install_requires=['mpyq >= 0.2.5'],
     entry_points={
-        'console_scripts': [
-            'heroprotocol = heroprotocol.heroprotocol:main',
-        ]
+        'console_scripts': ['heroprotocol = heroprotocol.heroprotocol:main',]
     },
-    python_requires='>=2.7'
+    python_requires='>=2.7',
 )
