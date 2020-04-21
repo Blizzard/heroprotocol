@@ -131,7 +131,7 @@ class BitPackedDecoder:
         return {field[0]: self.instance(field[1])}
 
     def _fourcc(self):
-        return self._buffer.read_unaligned_bytes(4)
+        return str(struct.pack('!i', self._buffer.read_bits(32)))
 
     def _int(self, bounds):
         return bounds[0] + self._buffer.read_bits(bounds[1])
@@ -144,10 +144,10 @@ class BitPackedDecoder:
         return self.instance(typeid) if exists else None
 
     def _real32(self):
-        return struct.unpack('>f', self._buffer.read_unaligned_bytes(4))
+        return struct.unpack('!f', self._buffer.read_unaligned_bytes(4))
 
     def _real64(self):
-        return struct.unpack('>d', self._buffer.read_unaligned_bytes(8))
+        return struct.unpack('!d', self._buffer.read_unaligned_bytes(8))
 
     def _struct(self, fields):
         result = {}
