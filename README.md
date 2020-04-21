@@ -1,7 +1,6 @@
 # heroprotocol
 
-heroprotocol is a [Python](https://www.python.org/downloads/) library/module to decode Heroes of the Storm replay
-files into Python data structures.
+heroprotocol is a [Python](https://www.python.org/downloads/) library and command-line tool to decode Heroes of the Storm replay files into Python data structures.
 
 The tool is available as a [PyPI Package](https://pypi.org/project/heroprotocol/) or as source code.
 
@@ -22,11 +21,15 @@ it's meant to be just the first tool in the chain for your data mining applicati
 
 ## Supported Versions
 
-heroprotocol supports all Hereos of the Storm replay files that were written with retail and PTR versions of the game.
+heroprotocol supports all Hereos of the Storm replay files that were played with retail and PTR versions of the game.
 
 ## Requirements
 
-A working installation of Python 3.x is required.
+* Python 2.7 or 3.x
+  * Note: A future release may remove support for Python 2.7
+* Python Packages:
+  * mpyq 0.2.5+
+  * six 1.14.0+
 
 ## Installation
 
@@ -40,18 +43,7 @@ Or clone the repository and run from source:
 
 ```bash
 git clone https://github.com/Blizzard/heroprotocol.git
-```
-
-## Example Usage
-
-```bash
-python -m heroprotocol --[tracker-event-option] "<replayFileName>" > output.txt
-```
-
-If you want the output shown directly in the terminal, leave out the `> output.txt`.
-
-```bash
-python -m heroprotocol --details "Blackheart's Bay.StormReplay"
+python -m pip install -r ./heroprotocol/heroprotocol/requirements.txt
 ```
 
 ## Command Line Arguments
@@ -74,6 +66,19 @@ Output Options:
 --stats             Output stats about the active tracker event to the STDERR stream
 --json              Use JSON syntax for output
 ```
+
+## Example Usage
+
+If you want the output shown directly in the terminal, leave out the `> output.txt`.
+
+```bash
+python -m heroprotocol --details "Blackheart's Bay.StormReplay" > output.txt
+```
+
+By default, data is output as a Python dictionary object. To output a JSON file, add `--json`.
+
+**Note**, however, that the JSON file is formatted as a sequence/stream of JSON objects and
+will likely not parse as regular JSON.
 
 ## Tracker Events
 
@@ -105,8 +110,8 @@ Please report bugs at the [Heroes of the Storm Bug Report Forum](https://us.foru
 
 ## Acknowledgements
 
-The standalone tool uses [mpyq](https://github.com/eagleflo/mpyq) by [Aku Kotkavuo](https://github.com/eagleflo) to read
-mopaq files.
+The standalone tool uses [mpyq](https://github.com/eagleflo/mpyq) by
+[Aku Kotkavuo](https://github.com/eagleflo) to read mopaq files.
 
 Thank you to [healingbrew](https://github.com/healingbrew), [MGatner](https://github.com/mgatner),
 [koliva8245](https://github.com/koliva8245), [casualMLG](https://github.com/casualmlg), and others for submitting issues
@@ -123,6 +128,7 @@ library.
 
 ## License
 
-Copyright (c) 2020 Blizzard Entertainment
+Copyright 2020 Blizzard Entertainment
 
-Open sourced under the MIT license. See the included [LICENSE](LICENSE) file for more information.
+Source code for this project is released to the public under the MIT license.
+See the included [LICENSE](LICENSE) file for more information.
