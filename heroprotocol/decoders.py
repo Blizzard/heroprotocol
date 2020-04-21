@@ -6,29 +6,28 @@
 
 __all__ = ['TruncatedError', 'CorruptedError', 'BitPackedBuffer', 'BitPackedDecoder', 'VersionedDecoder']
 
+import six
 import struct
-
-from .compat import byte_to_int
-
-
-class TruncatedError(Exception):
-    pass
 
 
 class CorruptedError(Exception):
     pass
 
 
+class TruncatedError(Exception):
+    pass
+
+
 class BitPackedBuffer:
     def __init__(self, contents, endian='big'):
-        self._data = contents or []
+        self._data = bytes(contents) or []
         self._used = 0
         self._next = None
         self._nextbits = 0
         self._bigendian = (endian == 'big')
 
     def __str__(self):
-        s = '{:02x}'.format(byte_to_int(self._data[self._used])) \
+        s = '{:02x}'.format(six.byte2int(self._data[self._used])) \
             if self._used < len(self._data) else '--'
         return 'buffer({0:02x}/{1:d},[{2:d}]={3:s})'.format(
             self._nextbits and self._next or 0,
@@ -48,7 +47,7 @@ class BitPackedBuffer:
 
     def read_aligned_bytes(self, bytes):
         self.byte_align()
-        data = self._data[self._used:self._used + bytes]
+        data = six.ensure_binary(self._data[self._used:self._used + bytes])
         self._used += bytes
         if len(data) != bytes:
             raise TruncatedError(self)
@@ -61,7 +60,7 @@ class BitPackedBuffer:
             if self._nextbits == 0:
                 if self.done():
                     raise TruncatedError(self)
-                self._next = byte_to_int(self._data[self._used])
+                self._next = six.byte2int([self._data[self._used]])
                 self._used += 1
                 self._nextbits = 8
             copybits = min(bits - resultbits, self._nextbits)
@@ -76,7 +75,7 @@ class BitPackedBuffer:
         return result
 
     def read_unaligned_bytes(self, bytes):
-        return ''.join([chr(self.read_bits(8)) for i in range(bytes)])
+        return ''.join([chr(self.read_bits(8)) for _ in range(bytes)])
 
 
 class BitPackedDecoder:
@@ -91,7 +90,6 @@ class BitPackedDecoder:
         if typeid >= len(self._typeinfos):
             raise CorruptedError(self)
         typeinfo = self._typeinfos[typeid]
-        #print ' -- instance ', typeid, typeinfo
         return getattr(self, typeinfo[0])(*typeinfo[1])
 
     def byte_align(self):
@@ -105,7 +103,7 @@ class BitPackedDecoder:
 
     def _array(self, bounds, typeid):
         length = self._int(bounds)
-        return [self.instance(typeid) for i in range(length)]
+        return [self.instance(typeid) for _ in range(length)]
 
     def _bitarray(self, bounds):
         length = self._int(bounds)
@@ -127,7 +125,7 @@ class BitPackedDecoder:
         return {field[0]: self.instance(field[1])}
 
     def _fourcc(self):
-        return self._buffer.read_unaligned_bytes(4)
+        return six.ensure_binary(struct.pack('!I', self._buffer.read_bits(32)), encoding='ascii')
 
     def _int(self, bounds):
         return bounds[0] + self._buffer.read_bits(bounds[1])
@@ -140,10 +138,10 @@ class BitPackedDecoder:
         return self.instance(typeid) if exists else None
 
     def _real32(self):
-        return struct.unpack('>f', self._buffer.read_unaligned_bytes(4))
+        return struct.unpack('!f', self._buffer.read_unaligned_bytes(4))
 
     def _real64(self):
-        return struct.unpack('>d', self._buffer.read_unaligned_bytes(8))
+        return struct.unpack('!d', self._buffer.read_unaligned_bytes(8))
 
     def _struct(self, fields):
         result = {}

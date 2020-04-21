@@ -5,6 +5,7 @@
 #
 
 from heroprotocol.decoders import *
+import six
 
 
 # Decoding instructions for each protocol type.
@@ -353,7 +354,7 @@ replay_initdata_typeid = 70
 
 def _varuint32_value(value):
     # Returns the numeric value from a SVarUint32 instance.
-    for v in value.values():
+    for v in six.itervalues(value):
         return v
     return 0
 

@@ -12,7 +12,7 @@ import json
 import mpyq
 import pprint
 
-from .compat import get_stream
+from .compat import json_dumps
 from .versions import build, latest
 
 
@@ -30,10 +30,9 @@ class EventLogger:
             self._event_stats[event['_event']] = stat
         # write structure
         if self.args.json:
-            s = json.dumps(event, encoding="utf8")
-            print(s)
+            print(json_dumps(event, encoding='iso-8859-1'))
         else:
-            pprint.pprint(event, stream=output)
+            pprint.pprint(event, stream=output, width=120)
 
     def log_stats(self, output):
         for name, stat in sorted(self._event_stats.items(), key=lambda x: x[1][1]):

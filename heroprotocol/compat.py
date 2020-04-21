@@ -4,23 +4,12 @@
 # See the included LICENSE file for more information.
 #
 
-import sys
-import io
+import json
+import six
 
 
-PY3 = sys.version_info.major == 3
-
-
-def byte_to_int(x):
-    if PY3 and isinstance(x, (bytes, int)):
-        return x
+def json_dumps(obj, encoding):
+    if six.PY3:
+        return json.dumps(obj, ensure_ascii=True)
     else:
-        return ord(x)
-
-
-def get_stream():
-    if PY3:
-        cls = io.StringIO
-    else:
-        cls = io.BytesIO
-    return cls()
+        return json.dumps(obj, encoding=encoding)
