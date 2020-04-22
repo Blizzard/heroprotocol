@@ -5,10 +5,10 @@
 #
 
 __all__ = [
-    'TruncatedError',
-    'CorruptedError',
     'BitPackedBuffer',
     'BitPackedDecoder',
+    'CorruptedError',
+    'TruncatedError',
     'VersionedDecoder',
 ]
 
@@ -34,7 +34,7 @@ class BitPackedBuffer:
 
     def __str__(self):
         s = (
-            '{:02x}'.format(six.byte2int(self._data[self._used]))
+            '{:02x}'.format(six.byte2int([self._data[self._used]]))
             if self._used < len(self._data)
             else '--'
         )
