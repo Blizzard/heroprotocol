@@ -4,8 +4,9 @@
 # See the included LICENSE file for more information.
 #
 
-from heroprotocol.decoders import *
 import six
+
+from heroprotocol.decoders import CorruptedError, BitPackedBuffer, BitPackedDecoder, VersionedDecoder
 
 
 # Decoding instructions for each protocol type.
