@@ -8,7 +8,7 @@ import subprocess
 
 
 def game_version():
-    return '2.50.0.79155'
+    return '2.50.1.79515'
 
 
 def read_command_output(cmd):
@@ -39,5 +39,5 @@ def git_commit_hash():
 
 
 if __name__ == '__main__':
-    print("Game version: {}".format(game_version()))
-    print("Git commit hash: {}".format(git_commit_hash()))
+    print('Game version: {}'.format(game_version()))
+    print('Git commit hash: {}'.format(git_commit_hash()))
