@@ -36,7 +36,7 @@ setuptools.setup(
         'Topic :: System :: Archiving',
         'Topic :: Utilities',
     ],
-    install_requires=['mpyq >= 0.2.5'],
+    install_requires=['mpyq >= 0.2.5', 'six >= 1.14.0'],
     entry_points={
         'console_scripts': ['heroprotocol = heroprotocol.heroprotocol:main',]
     },
