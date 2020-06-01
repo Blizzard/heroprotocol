@@ -1,0 +1,30 @@
+name: lint_python
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - py3-pypi
+jobs:
+  lint_python:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+       os: [ubuntu-latest, macos-latest, windows-latest]
+       python-version: [2.7, 3.8]  # , pypy3]
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-python@master
+      - run: pip install black codespell flake8 isort pytest
+      - run: black -S --check --exclude 'protocol\d+\.py' setup.py heroprotocol
+      #- run: black --diff . || true
+      #- if: matrix.python-version >= 3.6
+      #  run: |
+      #    pip install black
+      #    black --check .
+      - run: codespell --quiet-level=2
+      - run: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+      # - run: isort --recursive . --check-only || true
+      # - run: pip install -r ./heroprotocol/requirements.txt || true
+      # - run: pytest . || true
