@@ -5,7 +5,7 @@
 #
 
 __author__ = 'Blizzard Entertainment'
-__version__ = (2, 51, 0, 80333)
+__version__ = (2, 51, 1, 80702)
 
 from pkgutil import extend_path
 
