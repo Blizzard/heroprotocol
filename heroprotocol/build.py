@@ -8,7 +8,7 @@ import subprocess
 
 
 def game_version():
-    return '2.52.1.82169'
+    return '2.52.2.82624'
 
 
 def read_command_output(cmd):
