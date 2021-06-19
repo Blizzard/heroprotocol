@@ -128,7 +128,7 @@ library.
 
 ## License
 
-Copyright 2020 Blizzard Entertainment
+Copyright 2021 Blizzard Entertainment
 
 Source code for this project is released to the public under the MIT license.
 See the included [LICENSE](LICENSE) file for more information.
