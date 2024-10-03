@@ -21,7 +21,7 @@ it's meant to be just the first tool in the chain for your data mining applicati
 
 ## Supported Versions
 
-heroprotocol supports all Hereos of the Storm replay files that were played with retail and PTR versions of the game.
+heroprotocol supports all Heroes of the Storm replay files that were played with retail and PTR versions of the game.
 
 ## Requirements
 
