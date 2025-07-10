@@ -6,7 +6,6 @@
 
 import os
 import re
-import imp
 import sys
 
 
@@ -16,6 +15,9 @@ def _import_protocol(base_path, protocol_module_name):
 
     This implementation is derived from the __import__ example here:
         https://docs.python.org/2/library/imp.html
+
+    In Python3, imp has been succeeded by importlib, example here:
+        https://docs.python.org/3/library/importlib.html
     """
 
     # Try to return the module if it's been loaded already
@@ -25,9 +27,17 @@ def _import_protocol(base_path, protocol_module_name):
     # If any of the following calls raises an exception,
     # there's a problem we can't handle -- let the caller handle it.
     #
-    fp, pathname, description = imp.find_module(protocol_module_name, [base_path])
+    fp = None
     try:
-        return imp.load_module(protocol_module_name, fp, pathname, description)
+        if sys.version_info[0] == 3:
+            import importlib
+            sys.path.append(base_path)
+            module = importlib.import_module(protocol_module_name)
+            return module
+        else:
+            import imp
+            fp, pathname, description = imp.find_module(protocol_module_name, [base_path])
+            return imp.load_module(protocol_module_name, fp, pathname, description)
     finally:
         # Since we may exit via an exception, close fp explicitly.
         if fp:
